@@ -1,12 +1,15 @@
-<ul>
-  <% @events.each do |event| %>
-  <li>
-    <strong><%= event.name %></strong>
-    
-    in <%= event.location%>:
-    <%= price(event) %>
-    <p><%= truncate(event.description, length: 35, seperator: ' ' )%></p>
-    <p><%= day_and_time(event) %></p>
-  </li> 
-  <% end %>
-</ul>
+<% @events.each do |event| %>
+<section class="event">
+  <div class="summary">
+    <h2><%= link_to event.name, event %></h2>
+    <h3><%= day_and_time(event) %> in 
+    </span><%= event.location%>: </h3>
+<span class="price"><%= price(event) %></span>
+    <p><%= truncate(event.description, length: 35, separator: ' ' )%></p>
+  </div>
+</section>
+<% end %>
+
+<section class="admin">
+  <%= link_to "Add New Event", new_event_path, class: "button" %>
+</section>
